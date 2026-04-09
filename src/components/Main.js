@@ -3,14 +3,15 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import BookingPage from '../pages/BookingPage';
 
-export const initializeTimes = () => ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
+export const initializeTimes = () => {
+  const today = new Date();
+  return window.fetchAPI(today);
+};
 
 export const updateTimes = (state, action) => {
   switch (action.type) {
     case 'UPDATE_TIMES':
-      // Returns the same available times regardless of date for now.
-      // This will be connected to a real API in a future exercise.
-      return initializeTimes();
+      return window.fetchAPI(new Date(action.payload));
     default:
       return state;
   }
