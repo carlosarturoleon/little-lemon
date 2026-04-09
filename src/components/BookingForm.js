@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const today = new Date().toISOString().split('T')[0];
 
@@ -17,6 +18,7 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
   const [guests, setGuests] = useState(1);
   const [occasion, setOccasion] = useState('Birthday');
   const [touched, setTouched] = useState({ date: false, guests: false });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const errors = validate({ date, guests });
   const isValid = Object.keys(errors).length === 0;
@@ -37,6 +39,7 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
     e.preventDefault();
     setTouched({ date: true, guests: true });
     if (!isValid) return;
+    setIsSubmitting(true);
     submitForm({ date, time, guests, occasion });
   };
 
@@ -53,6 +56,7 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         required
         aria-required="true"
         aria-describedby={errors.date ? 'date-error' : undefined}
+        className={touched.date && errors.date ? 'input--error' : ''}
       />
       {touched.date && errors.date && (
         <span id="date-error" className="form-error">{errors.date}</span>
@@ -83,6 +87,7 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         required
         aria-required="true"
         aria-describedby={errors.guests ? 'guests-error' : undefined}
+        className={touched.guests && errors.guests ? 'input--error' : ''}
       />
       {touched.guests && errors.guests && (
         <span id="guests-error" className="form-error">{errors.guests}</span>
@@ -98,14 +103,17 @@ function BookingForm({ availableTimes, dispatch, submitForm }) {
         <option>Anniversary</option>
       </select>
 
-      <button
-        type="submit"
-        className="btn"
-        disabled={!isValid}
-        aria-label="Make Your Reservation"
-      >
-        Make Your Reservation
-      </button>
+      <div className="booking-form__actions">
+        <button
+          type="submit"
+          className="btn"
+          disabled={!isValid || isSubmitting}
+          aria-label="Make Your Reservation"
+        >
+          {isSubmitting ? 'Submitting…' : 'Make Your Reservation'}
+        </button>
+        <Link to="/" className="btn btn--dark" aria-label="Cancel reservation and go back to home">Cancel</Link>
+      </div>
     </form>
   );
 }

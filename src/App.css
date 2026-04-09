@@ -168,6 +168,11 @@ nav ul {
   color: var(--color-primary-green);
 }
 
+.nav__list li a.nav__link--active {
+  color: var(--color-primary-green);
+  border-bottom: 2px solid var(--color-primary-green);
+}
+
 /* ── Main ── */
 .main {
   min-height: 60vh;
@@ -547,8 +552,14 @@ nav ul {
   border-color: var(--color-primary-green);
 }
 
-.booking-form button {
+.booking-form__actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
   margin-top: 1rem;
+}
+
+.booking-form button {
   width: fit-content;
 }
 
@@ -562,6 +573,11 @@ nav ul {
   color: #c0392b;
   font-size: 0.85rem;
   margin-top: -0.25rem;
+}
+
+.booking-form input.input--error,
+.booking-form select.input--error {
+  border-color: #c0392b;
 }
 
 /* ── Responsive: new sections ── */
