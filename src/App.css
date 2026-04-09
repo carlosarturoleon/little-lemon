@@ -500,6 +500,41 @@ nav ul {
   min-height: 60vh;
 }
 
+/* ── Booking form ── */
+.booking-form {
+  display: grid;
+  max-width: 480px;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.booking-form label {
+  font-weight: 700;
+  margin-top: 0.75rem;
+}
+
+.booking-form input,
+.booking-form select {
+  padding: 0.6rem 0.75rem;
+  border: 2px solid var(--color-highlight-light);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-highlight-dark);
+  background-color: #fff;
+}
+
+.booking-form input:focus,
+.booking-form select:focus {
+  outline: none;
+  border-color: var(--color-primary-green);
+}
+
+.booking-form button {
+  margin-top: 1rem;
+  width: fit-content;
+}
+
 /* ── Responsive: new sections ── */
 @media (max-width: 768px) {
   .hero__inner {
