@@ -9,7 +9,7 @@ function Nav() {
         <li><Link to="/" className={pathname === '/' ? 'nav__link--active' : ''}>Home</Link></li>
         <li><Link to="/about" className={pathname === '/about' ? 'nav__link--active' : ''}>About</Link></li>
         <li><Link to="/menu" className={pathname === '/menu' ? 'nav__link--active' : ''}>Menu</Link></li>
-        <li><Link to="/reservations" className={pathname === '/reservations' ? 'nav__link--active' : ''}>Reservations</Link></li>
+        <li><Link to="/booking" className={pathname === '/booking' ? 'nav__link--active' : ''}>Reservations</Link></li>
         <li><Link to="/order" className={pathname === '/order' ? 'nav__link--active' : ''}>Order Online</Link></li>
         <li><Link to="/login" className={pathname === '/login' ? 'nav__link--active' : ''}>Login</Link></li>
       </ul>
