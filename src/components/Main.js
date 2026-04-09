@@ -3,15 +3,22 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import BookingPage from '../pages/BookingPage';
 
+const defaultTimes = ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
+
 export const initializeTimes = () => {
-  const today = new Date();
-  return window.fetchAPI(today);
+  if (typeof window.fetchAPI === 'function') {
+    return window.fetchAPI(new Date());
+  }
+  return defaultTimes;
 };
 
 export const updateTimes = (state, action) => {
   switch (action.type) {
     case 'UPDATE_TIMES':
-      return window.fetchAPI(new Date(action.payload));
+      if (typeof window.fetchAPI === 'function') {
+        return window.fetchAPI(new Date(action.payload));
+      }
+      return state;
     default:
       return state;
   }
