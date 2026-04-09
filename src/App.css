@@ -552,6 +552,18 @@ nav ul {
   width: fit-content;
 }
 
+.booking-form button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.form-error {
+  color: #c0392b;
+  font-size: 0.85rem;
+  margin-top: -0.25rem;
+}
+
 /* ── Responsive: new sections ── */
 @media (max-width: 768px) {
   .hero__inner {
