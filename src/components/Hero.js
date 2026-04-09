@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 function Hero() {
   return (
-    <section className="hero">
+    <section className="hero" aria-label="Hero section">
       <div className="hero__inner container">
         <div className="hero__text">
           <h1>Little Lemon</h1>
@@ -11,7 +11,7 @@ function Hero() {
             We are a family owned Mediterranean restaurant, focused on
             traditional recipes served with a modern twist.
           </p>
-          <Link to="/booking" className="btn">Reserve a Table</Link>
+          <Link to="/booking" className="btn" aria-label="Reserve a table at Little Lemon">Reserve a Table</Link>
         </div>
         <div className="hero__image">
           <img

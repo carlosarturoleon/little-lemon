@@ -32,7 +32,7 @@ const specials = [
 
 function Specials() {
   return (
-    <section className="specials">
+    <section className="specials" aria-label="Weekly specials">
       <div className="specials__header container">
         <h2>This week's specials!</h2>
         <Link to="/menu" className="btn">Online Menu</Link>
@@ -44,10 +44,10 @@ function Specials() {
             <div className="card__body">
               <div className="card__title-row">
                 <h3 className="card__name">{dish.name}</h3>
-                <span className="card__price">{dish.price}</span>
+                <span className="card__price" aria-label={`Price: ${dish.price}`}>{dish.price}</span>
               </div>
               <p className="card__description">{dish.description}</p>
-              <Link to="/order" className="card__link">Order a delivery &#x1F6B4;</Link>
+              <Link to="/order" className="card__link" aria-label={`Order ${dish.name} for delivery`}>Order a delivery &#x1F6B4;</Link>
             </div>
           </article>
         ))}

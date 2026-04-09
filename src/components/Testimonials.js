@@ -7,13 +7,13 @@ const testimonials = [
 
 function Testimonials() {
   return (
-    <section className="testimonials">
+    <section className="testimonials" aria-label="Customer testimonials">
       <div className="container">
         <h2>Testimonials</h2>
         <div className="testimonials__cards">
           {testimonials.map((t) => (
             <article key={t.id} className="testimonial-card">
-              <p className="testimonial-card__rating">{'★'.repeat(t.rating)}{'☆'.repeat(5 - t.rating)}</p>
+              <p className="testimonial-card__rating" aria-label={`Rating: ${t.rating} out of 5 stars`}>{'★'.repeat(t.rating)}{'☆'.repeat(5 - t.rating)}</p>
               <div className="testimonial-card__profile">
                 <div className="testimonial-card__avatar" aria-hidden="true">{t.name[0]}</div>
                 <span className="testimonial-card__name">{t.name}</span>

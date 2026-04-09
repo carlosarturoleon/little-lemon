@@ -7,7 +7,7 @@ function Footer() {
           alt="Little Lemon Logo"
           className="footer__logo"
         />
-        <nav>
+        <nav aria-label="Footer navigation">
           <p className="footer__nav-title">Navigation</p>
           <ul className="footer__nav-list">
             <li><a href="/">Home</a></li>
@@ -24,7 +24,7 @@ function Footer() {
           <p>Phone number</p>
           <p>Email</p>
         </address>
-        <section className="footer__social">
+        <section className="footer__social" aria-label="Social media links">
           <p className="footer__social-title">Social Media Links</p>
           <p>Address</p>
           <p>Phone number</p>
