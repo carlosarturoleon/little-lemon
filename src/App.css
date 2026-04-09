@@ -500,6 +500,23 @@ nav ul {
   min-height: 60vh;
 }
 
+/* ── Confirmed booking page ── */
+.confirmed-booking {
+  padding: 6rem 1rem;
+  min-height: 60vh;
+  text-align: center;
+}
+
+.confirmed-booking h1 {
+  color: var(--color-primary-green);
+  margin-bottom: 1rem;
+}
+
+.confirmed-booking p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
 /* ── Booking form ── */
 .booking-form {
   display: grid;
