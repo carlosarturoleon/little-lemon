@@ -1,70 +1,109 @@
-# Getting Started with Create React App
+# Little Lemon Restaurant
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React web application for the Little Lemon Mediterranean restaurant in Chicago. Built as the capstone project for the Meta Frontend Developer Professional Certificate.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Homepage** — Hero section, weekly specials, customer testimonials, and about section
+- **Table Reservations** — Booking form with real-time available time slots fetched from an API
+- **Form Validation** — Client-side validation with inline error messages and visual field highlighting
+- **Multi-page Navigation** — Client-side routing with React Router (About, Menu, Order Online, Login)
+- **Accessible UI** — ARIA labels, semantic HTML, and keyboard-navigable components
+- **Responsive Design** — Mobile-first layout using CSS Flexbox and Grid
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [React 19](https://react.dev/) — UI library
+- [React Router DOM v7](https://reactrouter.com/) — Client-side routing
+- [Create React App](https://create-react-app.dev/) — Project scaffolding
+- [React Testing Library](https://testing-library.com/) + [Jest](https://jestjs.io/) — Unit testing
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+### Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [Node.js](https://nodejs.org/) v18 or higher
+- npm (included with Node.js)
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+# 1. Clone the repository
+git clone https://github.com/carlosarturoleon/little-lemon.git
+cd little-lemon
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# 2. Install dependencies
+npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# 3. Start the development server
+npm start
+```
 
-### `npm run eject`
+The app will open at [http://localhost:3000](http://localhost:3000).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Running Tests
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm test
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Runs the 21 unit tests covering:
+- Form validation logic (date, guests)
+- HTML5 accessibility attributes on form fields
+- API integration (`initializeTimes`, `updateTimes`)
+- Form submission behavior
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Building for Production
 
-## Learn More
+```bash
+npm run build
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Outputs an optimized production build to the `/build` folder.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Project Structure
 
-### Code Splitting
+```
+src/
+├── components/
+│   ├── Header.js          # Site header with logo and navigation
+│   ├── Nav.js             # Navigation links with active state highlight
+│   ├── Main.js            # Route definitions and booking state (useReducer)
+│   ├── Footer.js          # Site footer with nav, contact, social links
+│   ├── Hero.js            # Homepage hero section
+│   ├── Specials.js        # Weekly specials dish cards
+│   ├── Testimonials.js    # Customer review cards
+│   ├── About.js           # About section with owner photos
+│   └── BookingForm.js     # Controlled booking form with validation
+├── pages/
+│   ├── HomePage.js        # Composes Hero, Specials, Testimonials, About
+│   ├── BookingPage.js     # Table reservation page
+│   ├── ConfirmedBooking.js# Booking confirmation page
+│   ├── AboutPage.js       # About page with team section
+│   ├── MenuPage.js        # Full menu organized by category
+│   ├── OrderPage.js       # Online order page
+│   └── LoginPage.js       # Login form
+├── __mocks__/
+│   └── react-router-dom.js# CJS mock for Jest ESM compatibility
+├── App.js                 # Root component
+├── App.css                # Global styles and brand design tokens
+└── index.js               # Entry point with BrowserRouter
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## API Integration
 
-### Analyzing the Bundle Size
+The app integrates with the Little Lemon booking API loaded via a `<script>` tag in `public/index.html`:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- `window.fetchAPI(date)` — Returns available time slots for a given date
+- `window.submitAPI(formData)` — Submits a reservation and returns `true` on success
 
-### Making a Progressive Web App
+Both calls are guarded with `typeof` checks and fall back to default values if the API script is unavailable (e.g. in test environments).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Accessibility
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Semantic HTML5 elements throughout (`header`, `nav`, `main`, `footer`, `section`, `article`, `address`)
+- `aria-label` on all interactive and landmark elements
+- `aria-required` and `aria-describedby` on form fields
+- Active navigation link indicated visually and via DOM class
+- Error messages linked to their fields via `aria-describedby`
+- Visual error highlighting (red border) on invalid form fields

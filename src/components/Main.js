@@ -8,8 +8,12 @@ import MenuPage from '../pages/MenuPage';
 import OrderPage from '../pages/OrderPage';
 import LoginPage from '../pages/LoginPage';
 
+// Fallback times used when the API script is not available (e.g. in tests or
+// when the external script is blocked by the browser).
 const defaultTimes = ['17:00', '18:00', '19:00', '20:00', '21:00', '22:00'];
 
+// Initializes available times for today's date.
+// Called once as the initial state value for useReducer.
 export const initializeTimes = () => {
   if (typeof window.fetchAPI === 'function') {
     return window.fetchAPI(new Date());
@@ -17,6 +21,8 @@ export const initializeTimes = () => {
   return defaultTimes;
 };
 
+// Reducer that updates available time slots when the user picks a new date.
+// Exported so it can be imported and tested in isolation.
 export const updateTimes = (state, action) => {
   switch (action.type) {
     case 'UPDATE_TIMES':
@@ -33,6 +39,8 @@ function Main() {
   const [availableTimes, dispatch] = useReducer(updateTimes, initializeTimes());
   const navigate = useNavigate();
 
+  // Submits the booking to the API and navigates to the confirmation page.
+  // Falls back to navigating directly when the API script is unavailable.
   const submitForm = (formData) => {
     if (typeof window.submitAPI === 'function') {
       const success = window.submitAPI(formData);
@@ -40,7 +48,6 @@ function Main() {
         navigate('/confirmed');
       }
     } else {
-      // Fallback when API script isn't available
       navigate('/confirmed');
     }
   };
